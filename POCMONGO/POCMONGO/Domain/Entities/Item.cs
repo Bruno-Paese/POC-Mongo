@@ -1,12 +1,10 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
-using MongoDB.Bson;
-using MongoDB.Driver;
+﻿using MongoDB.Driver;
 using POC_Mongo.Src.Repositories.MongoDB;
-using POC_Mongo.Src.Domain.Entities;
+using POCMONGO.Domain.Entities;
 
 namespace POC_Mongo.Src.Domain.Entities
 {
-    public class Item : Entity
+    public class Item : Entity, IEntity
     {
         private IMongoCollection<Item> collection;
         public string? Name { get; set; }
@@ -65,6 +63,16 @@ namespace POC_Mongo.Src.Domain.Entities
             {
                 return false;
             }
+        }
+
+        Task<List<IEntity>> IEntity.getAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<IEntity> IEntity.getOne(string id)
+        {
+            throw new NotImplementedException();
         }
     }
 }
